@@ -18,19 +18,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.15, 0.1, 0.1, 1)
+color = Color(0.15, 0.08, 0.08, 1)
 
 [node name="Panel" type="Panel"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -150.0
-offset_right = 200.0
-offset_bottom = 150.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -40,9 +38,27 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 40.0
 grow_horizontal = 2
-text = "Training"
+theme_override_colors/font_color = Color(1, 0.6, 0.4, 1)
+theme_override_font_sizes/font_size = 18
+text = "💪 TRAINING GYM"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PetSprite" type="TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -100.0
+offset_right = 32.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(32, 32)
+stretch_mode = 5
 
 [node name="Stats" type="VBoxContainer"]
 layout_mode = 1
@@ -52,31 +68,36 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = -70.0
+offset_top = -20.0
 offset_right = 150.0
-offset_bottom = 30.0
+offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HPLabel" type="Label"]
 layout_mode = 2
-text = "HP: 0"
+text = "❤️ HP: 0"
 
 [node name="AtkLabel" type="Label"]
 layout_mode = 2
-text = "Attack: 0"
+text = "⚔️ Attack: 0"
 
 [node name="DefLabel" type="Label"]
 layout_mode = 2
-text = "Defense: 0"
+text = "🛡️ Defense: 0"
 
 [node name="SpdLabel" type="Label"]
 layout_mode = 2
-text = "Speed: 0"
+text = "💨 Speed: 0"
 
 [node name="FatigueLabel" type="Label"]
 layout_mode = 2
-text = "Fatigue: 0"
+text = "😓 Fatigue: 0"
+
+[node name="FriendshipLabel" type="Label"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.6, 0.8, 1)
+text = "♥ Friendship: 0"
 
 [node name="TrainMenu" type="HBoxContainer"]
 layout_mode = 1
@@ -85,24 +106,27 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = 40.0
-offset_right = 150.0
-offset_bottom = 70.0
+offset_left = -170.0
+offset_top = 80.0
+offset_right = 170.0
+offset_bottom = 110.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TrainAtkBtn" type="Button"]
 layout_mode = 2
-text = "Train ATK"
+size_flags_horizontal = 3
+text = "⚔️ ATK"
 
 [node name="TrainDefBtn" type="Button"]
 layout_mode = 2
-text = "Train DEF"
+size_flags_horizontal = 3
+text = "🛡️ DEF"
 
 [node name="TrainSpdBtn" type="Button"]
 layout_mode = 2
-text = "Train SPD"
+size_flags_horizontal = 3
+text = "💨 SPD"
 
 [node name="ResultLabel" type="Label"]
 layout_mode = 1
@@ -112,24 +136,19 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = 80.0
+offset_top = 120.0
 offset_right = 150.0
-offset_bottom = 106.0
+offset_bottom = 146.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 14
 horizontal_alignment = 1
+text = ""
 
 [node name="BackBtn" type="Button"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Back"
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 80.0
+offset_bottom = 50.0
+text = "◀ BACK"

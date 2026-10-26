@@ -4,15 +4,15 @@ signal pet_updated
 signal time_tick
 
 var current_pet = {}
-var inventory = {"meat": 5, "bread": 3, "vitamin": 1, "protein": 2}
+var inventory = {"meat": 8, "bread": 5, "vitamin": 2, "protein": 3}
 var digivice_tier = 1
 var unlocked_upgrades = ["basic"]
 var scanned_codes = []
 var companion_storage = []
-var coins = 0
+var coins = 500
 var last_save_time = 0
 
-var game_time = 0  # seconds since start
+var game_time = 0
 var time_accumulator = 0
 
 func _ready():
@@ -20,7 +20,7 @@ func _ready():
 
 func _process(delta):
 	time_accumulator += delta
-	if time_accumulator >= 1.0:  # tick every second
+	if time_accumulator >= 1.0:
 		time_accumulator = 0
 		game_time += 1
 		process_time()
@@ -29,24 +29,25 @@ func _process(delta):
 func process_time():
 	if current_pet.is_empty():
 		return
-	# Real-time decay
-	var hunger_rate = 0.5  # per second
-	var energy_rate = 0.3
-	current_pet.hunger = max(0, current_pet.hunger - hunger_rate * 10)  # scaled
-	current_pet.energy = max(0, current_pet.energy - energy_rate * 5)
+	var hunger_rate = 0.3
+	var energy_rate = 0.2
+	current_pet.hunger = max(0, current_pet.hunger - hunger_rate)
+	current_pet.energy = max(0, current_pet.energy - energy_rate)
 	
-	# Mood affected by hunger/energy
-	if current_pet.hunger < 20 or current_pet.energy < 20:
-		current_pet.mood = max(0, current_pet.mood - 0.2)
-	elif current_pet.hunger > 60 and current_pet.energy > 60:
-		current_pet.mood = min(100, current_pet.mood + 0.1)
+	if current_pet.hunger < 25 or current_pet.energy < 25:
+		current_pet.mood = max(0, current_pet.mood - 0.15)
+		if randf() < 0.01:
+			current_pet.care_mistakes += 1
+	elif current_pet.hunger > 70 and current_pet.energy > 70:
+		current_pet.mood = min(100, current_pet.mood + 0.08)
 	
-	# Age
 	current_pet.age_seconds += 1
+	if current_pet.fatigue > 0:
+		current_pet.fatigue = max(0, current_pet.fatigue - 0.5)
+	
 	emit_signal("pet_updated")
 	check_evolution()
 	
-	# Auto save every 60 seconds
 	if game_time % 60 == 0:
 		save_state()
 
@@ -89,13 +90,12 @@ func feed_food(food_id: String) -> bool:
 	current_pet.weight += food.weight_change
 	current_pet.mood = min(100, current_pet.mood + food.mood_change)
 	
-	# Apply stat effects
 	if food.has("stat_effects"):
 		for stat in food.stat_effects:
 			if current_pet.stats.has(stat):
 				current_pet.stats[stat] += food.stat_effects[stat]
 	
-	current_pet.friendship += 2
+	current_pet.friendship += 3
 	emit_signal("pet_updated")
 	save_state()
 	return true
@@ -106,14 +106,13 @@ func train(stat_type: String) -> Dictionary:
 	if current_pet.energy < 15:
 		return {"success": false, "message": "Not enough energy!"}
 	
-	# Training gains
-	var gain = randi_range(1, 3)
+	var gain = randi_range(2, 4)
 	current_pet.stats[stat_type] += gain
 	current_pet.training_count += 1
-	current_pet.fatigue += 15
-	current_pet.energy -= 15
-	current_pet.friendship += 3
-	current_pet.mood = min(100, current_pet.mood + 5)
+	current_pet.fatigue += 12
+	current_pet.energy -= 18
+	current_pet.friendship += 5
+	current_pet.mood = min(100, current_pet.mood + 8)
 	
 	emit_signal("pet_updated")
 	save_state()
@@ -157,14 +156,12 @@ func do_evolution(evo: Dictionary):
 	var d = DataManager.get_digimon(new_id)
 	if d.is_empty():
 		return
-	# Evolution - stats carry over partially
 	current_pet.id = new_id
 	current_pet.name = d.name
 	current_pet.stage = d.stage
-	# Boost stats on evolution
 	for stat in current_pet.stats:
-		current_pet.stats[stat] = int(current_pet.stats[stat] * 1.2) + d.base_stats.get(stat, 0) / 4
-	current_pet.friendship += 20
+		current_pet.stats[stat] = int(current_pet.stats[stat] * 1.25) + int(d.base_stats.get(stat, 0) / 3)
+	current_pet.friendship += 25
 	current_pet.mood = 100
 	emit_signal("pet_updated")
 	save_state()
@@ -178,7 +175,6 @@ func scan_code(code: String) -> Dictionary:
 			if code in scanned_codes:
 				return {"success": false, "message": "Already scanned!"}
 			scanned_codes.append(code)
-			# Add to companion storage
 			var new_digimon = {
 				"id": s.digimon_id,
 				"scanned_at": Time.get_unix_time_from_system(),
@@ -206,9 +202,7 @@ func transfer_to_game(storage_index: int) -> bool:
 	if storage_index < 0 or storage_index >= companion_storage.size():
 		return false
 	var digimon_ref = companion_storage[storage_index]
-	# Move to game - create pet
 	create_new_pet(digimon_ref.id)
-	# Remove from storage
 	companion_storage.remove_at(storage_index)
 	save_companion_storage()
 	save_state()
@@ -250,7 +244,6 @@ func save_state():
 func load_state():
 	var data = SaveManager.load_game()
 	if data.is_empty():
-		# Start new game
 		create_new_pet("botamon")
 		return
 	current_pet = data.get("current_pet", {})
@@ -258,7 +251,7 @@ func load_state():
 	digivice_tier = data.get("digivice_tier", 1)
 	unlocked_upgrades = data.get("unlocked_upgrades", ["basic"])
 	scanned_codes = data.get("scanned_codes", [])
-	coins = data.get("coins", 0)
+	coins = data.get("coins", 500)
 	game_time = data.get("game_time", 0)
 	
 	var comp_data = SaveManager.load_companion()
