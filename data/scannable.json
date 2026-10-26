@@ -1,0 +1,9 @@
+{
+  "scannable": [
+    {"code": "SCAN-BOT-001", "digimon_id": "botamon", "tier_required": 1},
+    {"code": "SCAN-AGU-001", "digimon_id": "agumon", "tier_required": 1},
+    {"code": "SCAN-GRE-001", "digimon_id": "greymon", "tier_required": 2},
+    {"code": "SCAN-MET-001", "digimon_id": "metalgreymon", "tier_required": 3},
+    {"code": "SCAN-WAR-001", "digimon_id": "wargreymon", "tier_required": 4}
+  ]
+}

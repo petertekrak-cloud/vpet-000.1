@@ -1,0 +1,40 @@
+{
+  "foods": [
+    {
+      "id": "meat",
+      "name": "Meat",
+      "type": "normal",
+      "hunger_restore": 30,
+      "weight_change": 5,
+      "mood_change": 5,
+      "stat_effects": {"hp": 2}
+    },
+    {
+      "id": "bread",
+      "name": "Bread",
+      "type": "normal",
+      "hunger_restore": 25,
+      "weight_change": 3,
+      "mood_change": 3,
+      "stat_effects": {"defense": 1}
+    },
+    {
+      "id": "vitamin",
+      "name": "Vitamin",
+      "type": "medicine",
+      "hunger_restore": 10,
+      "weight_change": -2,
+      "mood_change": 10,
+      "stat_effects": {"hp": 5, "attack": 2}
+    },
+    {
+      "id": "protein",
+      "name": "Protein Bar",
+      "type": "training",
+      "hunger_restore": 15,
+      "weight_change": 2,
+      "mood_change": 8,
+      "stat_effects": {"attack": 3, "defense": 1}
+    }
+  ]
+}

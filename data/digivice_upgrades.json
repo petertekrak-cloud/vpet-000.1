@@ -1,0 +1,40 @@
+{
+  "upgrades": [
+    {
+      "id": "basic",
+      "name": "Basic Digivice",
+      "tier": 1,
+      "cost": 0,
+      "unlocked": true,
+      "scan_tier_limit": ["Baby", "Rookie"],
+      "features": ["basic_care", "training"]
+    },
+    {
+      "id": "silver",
+      "name": "Silver Digivice",
+      "tier": 2,
+      "cost": 1000,
+      "unlocked": false,
+      "scan_tier_limit": ["Baby", "Rookie", "Champion"],
+      "features": ["basic_care", "training", "adventure"]
+    },
+    {
+      "id": "gold",
+      "name": "Gold Digivice",
+      "tier": 3,
+      "cost": 5000,
+      "unlocked": false,
+      "scan_tier_limit": ["Baby", "Rookie", "Champion", "Ultimate"],
+      "features": ["basic_care", "training", "adventure", "battle_lan"]
+    },
+    {
+      "id": "crimson",
+      "name": "Crimson Digivice",
+      "tier": 4,
+      "cost": 15000,
+      "unlocked": false,
+      "scan_tier_limit": ["Baby", "Rookie", "Champion", "Ultimate", "Mega"],
+      "features": ["basic_care", "training", "adventure", "battle_lan", "battle_online"]
+    }
+  ]
+}

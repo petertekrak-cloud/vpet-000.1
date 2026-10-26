@@ -1,0 +1,39 @@
+DIGIMON V-PET PROTOTYPE - Run Instructions
+
+Tech Stack: Godot 4.3 (GDScript) - Cross-platform engine for pixel art games
+- Game + Companion app share same data/save system
+- Data-driven design via JSON files in data/
+- All sprites are 64x64 pixel art placeholders (replace with real art)
+
+How to Run:
+1. Install Godot 4.3 from https://godotengine.org/download
+2. Open Godot and import project from /workspace/app (select project.godot)
+3. Run the project - main scene is res://scenes/main/Digivice.tscn
+
+Scenes:
+- Main Digivice: Feed, Train, Battle, Explore, Scan, Storage
+- Companion App: View/storage box for transferring Digimon
+- Training: Stat training minigame with fatigue
+- Battle: Turn-based PVP battle system
+- Explore: Node-based adventure with encounters
+- Scan: Code/QR scan system for unlocking Digimon
+- Digivice Upgrade: Upgrade tiers gating scan/capture
+
+Features Implemented:
+✓ Classic vpet loop (hunger, energy, mood, friendship, care mistakes)
+✓ Real-time progression with offline time simulation
+✓ Friendship stat affecting evolution
+✓ Training minigames raising stats with fatigue limits
+✓ Multiple food types with different effects
+✓ Node-based exploration with encounters/rewards
+✓ Turn-based battle system
+✓ Branching evolution tree (Baby→Rookie→Champion→Ultimate→Mega)
+✓ Scan system for unlocking new Digimon with tier validation
+✓ Companion app with storage box (view/store/retrieve/transfer)
+✓ Digivice upgrade system gating scan tiers
+✓ Data-driven definitions (edit JSON files)
+✓ Save/load persistence
+✓ Starter roster with full evolution line (Botamon→Agumon→Greymon→MetalGreymon→WarGreymon)
+✓ Scannable Digimon per tier included
+
+Test Codes: SCAN-BOT-001, SCAN-AGU-001, SCAN-GRE-001, SCAN-MET-001, SCAN-WAR-001

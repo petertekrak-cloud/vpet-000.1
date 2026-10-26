@@ -1,0 +1,65 @@
+{
+  "evolutions": [
+    {
+      "from": "botamon",
+      "to": "agumon",
+      "requirements": {
+        "min_age_hours": 1,
+        "min_care_mistakes": 0,
+        "max_care_mistakes": 2,
+        "min_friendship": 10,
+        "min_stats": {"attack": 15},
+        "training_count_min": 3
+      },
+      "branch": "agumon_path"
+    },
+    {
+      "from": "agumon",
+      "to": "greymon",
+      "requirements": {
+        "min_age_hours": 6,
+        "min_friendship": 40,
+        "min_stats": {"attack": 35, "defense": 25},
+        "training_count_min": 10,
+        "care_quality": "good"
+      },
+      "branch": "greymon_path"
+    },
+    {
+      "from": "agumon",
+      "to": "gabumon",
+      "requirements": {
+        "min_age_hours": 6,
+        "min_friendship": 40,
+        "min_stats": {"defense": 30, "speed": 25},
+        "training_count_min": 10,
+        "branch_alternative": true
+      },
+      "branch": "gabumon_path"
+    },
+    {
+      "from": "greymon",
+      "to": "metalgreymon",
+      "requirements": {
+        "min_age_hours": 24,
+        "min_friendship": 70,
+        "min_stats": {"attack": 75, "defense": 60},
+        "training_count_min": 30,
+        "care_quality": "good"
+      },
+      "branch": "metalgreymon_path"
+    },
+    {
+      "from": "metalgreymon",
+      "to": "wargreymon",
+      "requirements": {
+        "min_age_hours": 72,
+        "min_friendship": 90,
+        "min_stats": {"attack": 120, "defense": 100},
+        "training_count_min": 60,
+        "care_quality": "excellent"
+      },
+      "branch": "wargreymon_path"
+    }
+  ]
+}

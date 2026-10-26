@@ -1,0 +1,44 @@
+{
+  "digimon_list": [
+    {
+      "id": "botamon",
+      "name": "Botamon",
+      "stage": "Baby",
+      "base_stats": {"hp": 50, "attack": 10, "defense": 10, "speed": 10, "power": 20},
+      "sprite_prefix": "botamon",
+      "description": "A slime-like Baby Digimon"
+    },
+    {
+      "id": "agumon",
+      "name": "Agumon",
+      "stage": "Rookie",
+      "base_stats": {"hp": 80, "attack": 25, "defense": 20, "speed": 18, "power": 40},
+      "sprite_prefix": "agumon",
+      "description": "A reptile Rookie Digimon"
+    },
+    {
+      "id": "greymon",
+      "name": "Greymon",
+      "stage": "Champion",
+      "base_stats": {"hp": 150, "attack": 50, "defense": 40, "speed": 35, "power": 70},
+      "sprite_prefix": "greymon",
+      "description": "A dinosaur Champion"
+    },
+    {
+      "id": "metalgreymon",
+      "name": "MetalGreymon",
+      "stage": "Ultimate",
+      "base_stats": {"hp": 250, "attack": 90, "defense": 75, "speed": 60, "power": 110},
+      "sprite_prefix": "metalgreymon",
+      "description": "A cyborg Ultimate"
+    },
+    {
+      "id": "wargreymon",
+      "name": "WarGreymon",
+      "stage": "Mega",
+      "base_stats": {"hp": 400, "attack": 140, "defense": 120, "speed": 95, "power": 160},
+      "sprite_prefix": "wargreymon",
+      "description": "A legendary Mega Digimon"
+    }
+  ]
+}
